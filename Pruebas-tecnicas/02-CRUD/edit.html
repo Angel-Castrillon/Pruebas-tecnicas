@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Objeto</title>
+</head>
+<body>
+  <h1>Editar Objeto</h1>
+
+  <form id="edit-form">
+    <label>Objeto:</label><br>
+    <input type="text" name="item" required><br><br>
+
+    <label>Marca:</label><br>
+    <input type="text" name="brand" required><br><br>
+
+    <label>Stock:</label><br>
+    <input type="number" name="stock" required><br><br>
+
+    <label>Descripción:</label><br>
+    <input type="text" name="description"><br><br>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+  <script>
+    const editForm = document.getElementById("edit-form");
+    const editIndex = localStorage.getItem("editIndex");
+    const objects = JSON.parse(localStorage.getItem("objects") || "[]");
+
+    if (editIndex === null || !objects[editIndex]) {
+      alert("No se encontró el objeto a editar.");
+      window.location.href = "index.html"; // o tu página principal
+    }
+
+    const object = objects[editIndex];
+
+    // Cargar datos en el formulario
+    editForm.item.value = object.item;
+    editForm.brand.value = object.brand;
+    editForm.stock.value = object.stock;
+    editForm.description.value = object.description;
+
+    // Guardar cambios
+    editForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      objects[editIndex] = {
+        item: editForm.item.value,
+        brand: editForm.brand.value,
+        stock: editForm.stock.value,
+        description: editForm.description.value
+      };
+
+      // Guardar en localStorage
+      localStorage.setItem("objects", JSON.stringify(objects));
+
+      alert("Cambios guardados.");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD papeleria</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="main-container-title">Papeleria PartnerPen</h1>
+        <button class="main-container-createItem" id="create-item" onclick="modalCreateItem()">Ingresar nuevo objeto</button>
+        <table class="main-container-table">
+            <thead>
+                <tr>
+                    <th>Objeto</th>
+                    <th>Marca</th>
+                    <th>Stock</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="object-list">
+                
+            </tbody>
+        </table>
+        <div class="main-container-modal" id="modal">
+            <div class="main-container-modal-content">
+                <button type="button" class="main-container-modal-close" id="close-modal" onclick="closeModal()">&times;</button>
+                <h2 class="main-container-modal-title">Ingresar nuevo objeto</h2>
+                <form id="create-item-form">
+                    <label for="item">Objeto:</label>
+                    <input type="text" id="item" name="item" required>
+                    <label for="brand">Marca:</label>
+                    <input type="text" id="brand" name="brand" required>
+                    <label for="stock">Stock:</label>
+                    <input type="number" id="stock" name="stock" required>
+                    <label for="description">Descripción:</label>
+                    <textarea id="description" name="description"></textarea>
+                    <button type="submit" class="main-container-modal-save">Guardar objeto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="./src/main.js"></script>
+</body>
+</html>
